@@ -33,9 +33,7 @@ export default function LeftSection() {
       Checklike(JSON.parse(localStorage?.getItem("UserData"))?.userDetailId);
       Checkbookmark(
         JSON.parse(localStorage?.getItem("UserData"))?.userDetailId
-      ).then(() => {
-        console.log(checkbookmark);
-      });
+      ).then(() => {});
     }
     getallblogs()
       .then(() => {
@@ -232,15 +230,12 @@ export default function LeftSection() {
             </button>
           </div>
         </div>
-        <div className="p-3 px-20 max-sm:px-2 w-full">
+        <div className="p-3 px-20 max-sm:px-2 flex flex-col w-full">
           {loading
             ? Array.from({ length: 3 }, (_, index) => (
                 <BlogCardSkeleton key={index} />
               ))
             : filterBlogs?.map((card, index) => {
-                console.log(checklike);
-                console.log(checkbookmark);
-
                 return (
                   <BlogCard
                     key={index}

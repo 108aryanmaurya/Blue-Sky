@@ -2,6 +2,7 @@ import { MainNav, Footer, Scroll } from "./Component/common";
 import BlogLayout from "./Layouts/BlogLayout";
 import LandingLayout from "./Layouts/LandingLayout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import SingleBlogLayout from "./Layouts/SingleBlogLayout";
 import BlogState from "./Helper/Context/BlogState";
 import WriteBlogLayout from "./Layouts/WriteBlogLayout";
@@ -18,6 +19,7 @@ import BookmarkLayout from "./Layouts/BookmarkLayout";
 import PreviewLayout from "./Layouts/PreviewLayout";
 import AboutUsLayout from "./Layouts/AboutUsLayout";
 import PageNotFoundMoon from "./Component/PageNotFound/PageNotFoundMoon";
+import KeywordLayout from "./Layouts/KeywordLayout";
 const App = () => {
   return (
     <BlogState>
@@ -56,6 +58,10 @@ const App = () => {
                   <Route
                     path="/updateblog/:id"
                     element={<UpdateBlogLayout></UpdateBlogLayout>}
+                  ></Route>
+                  <Route
+                    path="/searchBy/:field/:keyword"
+                    element={<KeywordLayout></KeywordLayout>}
                   ></Route>
                   <Route
                     path="/preview"

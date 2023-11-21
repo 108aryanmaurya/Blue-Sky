@@ -15,7 +15,6 @@ const FilterState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
     setfilterBlogs(json);
   };
   const getallcategory = async () => {
@@ -36,7 +35,6 @@ const FilterState = (props) => {
   };
 
   const getrelevantblogs = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
     const response = await fetch(`${host}/api/filter/getRelevantBlogs`, {
       method: "POST",
@@ -48,11 +46,9 @@ const FilterState = (props) => {
     });
 
     const resp = await response.json();
-    console.log(resp);
     setfilterBlogs(resp);
   };
   const getcategoryblogs = async (data) => {
-    console.log(data);
     const response = await fetch(`${host}/api/filter/getCategoryBlogs`, {
       method: "PUT",
       headers: {
@@ -62,8 +58,6 @@ const FilterState = (props) => {
     });
 
     const resp = await response.json();
-    console.log(resp);
-    // setfilterBlogs(resp);
     return resp;
   };
 
@@ -76,12 +70,10 @@ const FilterState = (props) => {
     });
 
     let resp = await response.json();
-    console.log(resp);
     setfilterBlogs(resp);
   };
 
   const getTopBlogs = async (interval) => {
-    console.log(interval);
     let response = await fetch(`${host}/api/filter/sortByViews/${interval}`, {
       method: "POST",
       headers: {
@@ -90,7 +82,6 @@ const FilterState = (props) => {
     });
 
     let resp = await response.json();
-    console.log(resp);
     setfilterBlogs(resp);
   };
 
@@ -112,9 +103,47 @@ const FilterState = (props) => {
     setfilterBlogs(output);
   };
 
+  const searchBySingleKeyword = async (data) => {
+    const { field, keyword } = data;
+    console.log(data);
+    const obj = JSON.parse(localStorage.getItem("UserData"));
+    const response = await fetch(`${host}/api/filter/searchkeyword`, {
+      method: "PUT",
+      headers: {
+        "auth-token": obj.authtoken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ field, keyword }),
+    });
+
+    const resp = await response.json();
+    console.log(resp);
+    return resp;
+  };
+
+  const searchBySingleKeywordarray = async (data) => {
+    const { field, keyword } = data;
+    const obj = JSON.parse(localStorage.getItem("UserData"));
+    const response = await fetch(`${host}/api/filter/searchkeywordarray`, {
+      method: "PUT",
+      headers: {
+        "auth-token": obj.authtoken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ field, keyword }),
+    });
+
+    const resp = await response.json();
+    console.log(resp);
+
+    return resp;
+  };
+
   return (
     <FilterContext.Provider
       value={{
+        searchBySingleKeywordarray,
+        searchBySingleKeyword,
         getrelevantblogs,
         getlatestblogs,
         filterBlogs,

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { target } from "../../Assets/icons";
 import ShareModal from "./ShareModal";
+import Bookmark from "../common/IconComponents/Bookmark";
+import Like from "../common/IconComponents/Like";
 
 const TopicBar = ({ navbarRef, card, scrollToCommentSection }) => {
   const [shareModalVisible, setShareModalVisible] = useState(false);
@@ -37,7 +39,8 @@ const TopicBar = ({ navbarRef, card, scrollToCommentSection }) => {
             className="dark:text-white max-sm:text-[13px] fa fa-comment  text-gray-600 hover:text-primaryMain dark:hover:text-primaryMain px-2 text-[20px] "
             onClick={scrollToCommentSection}
           ></i>
-          <i className="dark:text-white fa fa-bookmark max-sm:text-[13px] text-gray-600 hover:text-primaryMain dark:hover:text-primaryMain px-2 text-[20px] "></i>
+          <Bookmark card={card}></Bookmark>
+          <Like card={card}></Like>
           <i
             className="dark:text-white block fa fa-share  text-gray-600 max-sm:text-[13px] hover:text-primaryMain dark:hover:text-primaryMain px-2 text-[20px]"
             onClick={sharemodal}

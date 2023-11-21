@@ -22,6 +22,7 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
   const context3 = useContext(AuthContext);
   const navigate = useNavigate();
   const { UserDetails, AuthStatus, showAuthModal, setAuthModal } = context3;
+
   const [ShowEdit, setShowEdit] = useState(false);
   // console.log(isBookmark);
   const [bookmarked, setbookmarked] = useState(false);
@@ -31,11 +32,10 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
   const [shareModalVisible, setShareModalVisible] = useState(false);
 
   const bookmark = async () => {
-
     if (!AuthStatus) {
       setAuthModal((showAuthModal) => !showAuthModal);
     }
-    console.log(Bookmarked);
+    console.log(bookmarked);
 
     if (bookmarked == true) {
       await deletebookmark({
@@ -60,9 +60,7 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
     setShareModalVisible(!shareModalVisible);
   };
 
-  useEffect(() => {
-    console.log(bookmarked);
-  }, [bookmarked]);
+  useEffect(() => {}, [bookmarked]);
   const handleOutsideClick = (event) => {
     console.log("CLICED");
     if (modalRef.current === event.target) {
@@ -111,13 +109,11 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
             <div className="flex justify-between  items-center">
               <div className="mb-2 flex  items-center justify-between max-lg:items-start max-lg:flex-col">
                 <div className=" flex items-center ">
-                  <div
-                    className="group/author  flex items-center "
-                    onClick={() => {
-                      navigate(`/profile/${card?.author?.username}`);
-                    }}
-                  >
+                  <div className="group/author  flex items-center ">
                     <img
+                      onClick={() => {
+                        navigate(`/profile/${card?.author?.username}`);
+                      }}
                       src={
                         card?.author?.profileImg != ""
                           ? card?.author?.profileImg
@@ -136,12 +132,17 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
                           );
                         }}
                       >
-                        {card?.author.username}
+                        {card?.author?.username}
                       </p>
                       <span className="text-sm ml-2 font-semibold font-palanquin text-gray-400 dark:text-darkTextPrimary max-lg:hidden">
                         -
                       </span>
-                      <p className="text-sm ml-1 max-lg:ml-0 font-semibold font-palanquin text-gray-500 dark:text-darkTextPrimary">
+                      <p
+                        className="text-sm ml-1 max-lg:ml-0 font-semibold font-palanquin text-gray-500 dark:text-darkTextPrimary"
+                        onClick={() => {
+                          navigate(`/searchBy/Date/${card?.Date}`);
+                        }}
+                      >
                         {new Date(card?.Date).toLocaleString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -165,9 +166,9 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
               </h3>
             </div>
 
-            <div className="py-1 flex gap-2 justify-start items-center">
+            {/* <div className="py-1 flex gap-2 justify-start items-center">
               <button
-                className="p-1 rounded-md text-[15px] text-white px-4 border-2 border-slate-200 dark:border-gray-700 hover:border-blue-300  bg-primaryMain "
+                    className="p-1 rounded-md text-[15px] text-white px-4 border-2 border-slate-200 dark:border-gray-700 hover:border-blue-300  bg-primaryMain "
                 onClick={() => {
                   toast.success("Welcome to Blog");
 
@@ -185,7 +186,7 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
               >
                 Save
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="relative flex items-center justify-center w-[30%]">
             <div className="relative">
@@ -203,7 +204,12 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
                 />
               </div>
               <div className="absolute -top-1 -left-4 z-30">
-                <p className="text-[10px] uppercase bg-primaryMain text-darkTextMain dark:bg-secondary dark:text-darkTextMain  font-semibold tracking-widest px-4 rounded-md p-1">
+                <p
+                  className="text-[10px] uppercase bg-primaryMain text-darkTextMain dark:bg-secondary dark:text-darkTextMain  font-semibold tracking-widest px-4 rounded-md p-1"
+                  onClick={() => {
+                    navigate(`/searchBy/Category/${card?.Category}`);
+                  }}
+                >
                   {card?.Category}
                 </p>
               </div>
@@ -213,7 +219,7 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
 
         <div className="relative pb-1 flex justify-between items-center  flex-wrap w-full mt-1">
           <div className="flex gap-3  items-center ">
-            {card?.tags.slice(0, 2)?.map((tag, index) => (
+            {card?.tags?.slice(0, 2)?.map((tag, index) => (
               <Tags key={index} tags={tag} />
             ))}{" "}
           </div>
@@ -228,7 +234,6 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
 
             <Bookmark setbookmarked={setbookmarked} card={card}></Bookmark>
             <Like card={card}></Like>
-
 
             <div
               className="rounded-full max-sm:px-[7px] max-sm:py-[6px]   py-2 px-3  flex justify-center items-center transition ease-in-out  cursor-pointer "

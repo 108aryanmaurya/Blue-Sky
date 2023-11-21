@@ -56,8 +56,8 @@ router.post('/sortByViews/:interval', async (req, res) => {
         }
 
         // Find and sort blogCards based on views and the specified time interval
-        const sortedBlogCards = await blogCard.find({ Date: { $gte: startDate } }).populate('author')
-            .sort({ view: -1 })
+
+        const sortedBlogCards = await blogCard.find({ Date: { $gte: startDate } }).populate('author').sort({ view: -1 })
 
 
         res.json(sortedBlogCards);
@@ -77,14 +77,15 @@ router.post("/getRelevantBlogs", fetchuser, async (req, res) => {
 
         // const { keywords } = ;
 
-        console.log(typeof req.body.data)
+        console.log(req.body.data)
+
         // Create a text index on the fields you want to search
 
 
         // Use the $text operator for text search with $in operator to match any keyword
-        const result = await blogCard.find({ Category: { $in: ["Javascript", "python"] } }).populate('author');
+        const result = await blogCard.find({ Category: { $in: req.body.data } }).populate('author');
         // return result;
-        console.log(result)
+        // console.log(result)
         res.json(result);
     } catch (error) {
         console.error(error.message);
@@ -110,10 +111,9 @@ router.get("/getAllCategories", async (req, res) => {
 router.get('/getlatestblogs', async (req, res) => {
     try {
         // Specify the date range (e.g., the last 7 days)
-        const startDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // 7 days ago
-
+        const startDate = new Date(Date.now())
         // Find and sort blogCards based on the creation date
-        const latestBlogCards = await blogCard.find({ Date: { $gte: startDate } }).populate("author").sort({ Date: -1 }) // Sort by creation date in descending order
+        const latestBlogCards = await blogCard.find({ Date: { $lt: startDate } }).populate("author").sort({ Date: -1 }) // Sort by creation date in descending order
 
         res.json(latestBlogCards);
     } catch (error) {
@@ -157,5 +157,35 @@ router.put("/getCategoryBlogs", async (req, res) => {
     }
 })
 
+
+router.put('/searchkeyword', async (req, res) => {
+    try {
+
+        console.log(req.body)
+        const data = await blogCard.find({ [req.body.field]: req.body.keyword }).populate('author')
+
+        console.log(data)
+        res.json(data)
+    } catch (error) {
+
+        console.error(error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+router.put('/searchkeywordarray', async (req, res) => {
+    try {
+
+
+        const data = await blogCard.find({ [req.body.field]: { $in: [req.body.keyword] } }).populate('author')
+        console.log(data)
+
+        res.json(data)
+
+    } catch (error) {
+
+        console.error(error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import CommentLikeContext from "../../../Helper/Context/CommentLikeContext";
 import { toast } from "react-toastify";
 
-const Bookmark = ({ card }) => {
+const Like = ({ card }) => {
   const context5 = useContext(CommentLikeContext);
   const [liked, setliked] = useState(false);
   const [likecount, setlikecount] = useState(0);
@@ -15,7 +15,7 @@ const Bookmark = ({ card }) => {
     Checklike,
     // countBookmark,
   } = context5;
-
+  // console.log(card);
   useEffect(() => {
     async function countLike2() {
       setlikecount(await countLike(card._id));
@@ -28,7 +28,7 @@ const Bookmark = ({ card }) => {
       );
     }
     countLike2();
-  }, []);
+  }, [card]);
 
   const like = async () => {
     if (liked == true) {
@@ -71,4 +71,4 @@ const Bookmark = ({ card }) => {
   );
 };
 
-export default Bookmark;
+export default Like;

@@ -5,16 +5,20 @@ import UserReplies from "./UserReplies";
 import HelperContext from "../../Helper/Context/HelperContext";
 import CommentLikeContext from "../../Helper/Context/CommentLikeContext";
 import { profileDefault } from "../../Assets/icons";
+import CommentSettings from "./CommentSettings";
+import EditComment from "./EditComment";
 
 const CommentBox = ({ comment, depth, maxdepth }) => {
   const constext = useContext(HelperContext);
   const context3 = useContext(CommentLikeContext);
   const { getreply, reply } = context3;
+  const [edit, setedit] = useState(false);
   const { formatUTCDate, date } = constext;
   // console.log(comment);
   const [data, setdata] = useState({});
   const [showReply, setshowReply] = useState(false);
 
+  useEffect(() => {}, [edit]);
   // const comData = getreply(comment?._id);
   useEffect(() => {
     // console.log(comment);
@@ -46,13 +50,13 @@ const CommentBox = ({ comment, depth, maxdepth }) => {
           <div className="flex items-center">
             <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
               <img
-                className="mr-2 w-6 h-6 rounded-full"
+                className="dark:bg-slate-300 mr-2 w-6 h-6 bg-gray-200 rounded-full"
                 src={
                   comment?.author?.profileImg
                     ? comment?.author?.profileImg
                     : profileDefault
                 }
-                alt="Ram Ghanshyam"
+                alt="commentor"
               />
               {comment?.author?.username}
             </p>
@@ -60,26 +64,30 @@ const CommentBox = ({ comment, depth, maxdepth }) => {
               <time title="February 8th, 2022">{date}</time>
             </p>
           </div>
-          <button
-            id="dropdownComment1Button"
-            data-dropdown-toggle="dropdownComment1"
-            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-darkBgPrimary dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            type="button"
-          >
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 16 3"
-            >
-              <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-            </svg>
-            <span className="sr-only">Comment settings</span>
-          </button>
+
+          <CommentSettings
+            edit={edit}
+            setedit={setedit}
+            comment={comment}
+          ></CommentSettings>
         </footer>
         <div className="border-l-2 pl-2">
-          <p className=" text-gray-500 dark:text-gray-400">{comment.text}</p>
+          {edit ? (
+            <EditComment
+              // reply={reply}
+              // setreply={setreply}
+              key={comment?._id}
+              comment={comment}
+              // commentID={comment?._id}
+              // setshow={setreplyBox}
+              // show={true}
+              edit={edit}
+              setedit={setedit}
+              // onReplySubmit={handleReplySubmit}
+            ></EditComment>
+          ) : (
+            <p className=" text-gray-500 dark:text-gray-400">{comment.text}</p>
+          )}
           <div className="flex mt-4 gap-3 flex-col items-start">
             <div className="flex items-center  space-x-4">
               <button>
@@ -95,7 +103,6 @@ const CommentBox = ({ comment, depth, maxdepth }) => {
                   setreplyBox(true);
                 }}
               >
-                r
                 <svg
                   className="mr-1.5 w-3.5 h-3.5"
                   aria-hidden="true"

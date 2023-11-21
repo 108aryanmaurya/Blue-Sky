@@ -27,10 +27,10 @@ const Bookmark = ({ setbookmarked, card }) => {
           postId: card._id,
         })
       );
-      setbookmarked(Bookmarked);
+      // setbookmarked(Bookmarked);
     }
     countLike2();
-  }, []);
+  }, [card]);
 
   const bookmark = async () => {
     // setBookmarked(!Bookmarked);

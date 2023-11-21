@@ -5,6 +5,7 @@ import { useContext } from "react";
 const CommentLikeState = (props) => {
   const [allbookmarks, setallbookmarks] = useState([]);
   const [checkbookmark, setcheckbookmark] = useState([]);
+  const [editcomment, seteditcomment] = useState([]);
   const [checklike, setchecklike] = useState([]);
   const context = useContext(blogContext);
   // const {}
@@ -12,11 +13,9 @@ const CommentLikeState = (props) => {
   const host = "http://localhost:5001";
   const [SingleBlogComment, setSingleBlogComment] = useState([]);
   const addreply = async (data) => {
-    console.log(data);
     const { id } = data;
 
     const obj = JSON.parse(localStorage.getItem("UserData"));
-    console.log(obj.authtoken);
 
     const response = await fetch(`${host}/api/comments/addreply`, {
       method: "POST",
@@ -29,15 +28,13 @@ const CommentLikeState = (props) => {
       }),
     });
     const comments2 = await response.json();
+    getreply(id);
     setreply(comments2);
-    console.log(comments2);
   };
   const addcomment = async (data) => {
     // todo api call
     //API call
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
-    console.log(obj.authtoken);
     const { postID, comment, userID } = data;
     const response = await fetch(`${host}/api/comments/addcomment`, {
       method: "POST",
@@ -51,11 +48,31 @@ const CommentLikeState = (props) => {
         userID,
       }),
     });
+
     const comments = await response.json();
 
-    console.log(comments);
     // setSingleBlogComment(SingleBlogComment.concat(comments));
-    console.log("form addcomment");
+  };
+  const Editcomment = async (data) => {
+    // todo api call
+    //API call
+    const obj = JSON.parse(localStorage.getItem("UserData"));
+    const { commentID, comment, userID } = data;
+    const response = await fetch(`${host}/api/comments/editcomment`, {
+      method: "POST",
+      headers: {
+        "auth-token": obj.authtoken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        commentID,
+        comment,
+        userID,
+      }),
+    });
+    const comments = await response.json();
+
+    // setSingleBlogComment(SingleBlogComment.concat(comments));
   };
 
   const getsingleblogComment = async (id) => {
@@ -72,11 +89,7 @@ const CommentLikeState = (props) => {
 
     const json = await response.json();
 
-    console.log(json);
     setSingleBlogComment(json);
-    console.log(SingleBlogComment);
-
-    console.log("form SingleBlogContent");
   };
   const getreply = async (id) => {
     const response = await fetch(`${host}/api/comments/getreply/${id}`, {
@@ -90,16 +103,14 @@ const CommentLikeState = (props) => {
     const json = await response.json();
 
     setreply(json);
+    console.log(reply);
     // console.log(SingleBlogComment);
-    console.log(json);
 
-    console.log("form get reply");
     return json;
   };
 
   const updateViews = async (data) => {
     const { view, id } = data;
-    console.log(data);
     let reponse = await fetch(`${host}/api/comments/postViews/${id}`, {
       method: "PUT",
       headers: {
@@ -109,11 +120,9 @@ const CommentLikeState = (props) => {
     });
 
     let resp = await reponse.json();
-    console.log(resp);
   };
 
   const addbookmark = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/addbookmark/`, {
@@ -126,12 +135,9 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-
-    console.log(resp2);
   };
 
   const deletebookmark = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/deletebookmark/`, {
@@ -144,12 +150,9 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-
-    console.log(resp2);
   };
 
   const addlike = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/addlike/`, {
@@ -162,12 +165,9 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-
-    console.log(resp2);
   };
 
   const deletelike = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/deletelike/`, {
@@ -180,11 +180,8 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-
-    console.log(resp2);
   };
   const Checklike = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/checklike/`, {
@@ -197,12 +194,10 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-    console.log(resp2);
     return resp2;
   };
 
   const getbookmark = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/getbookmark/`, {
@@ -215,11 +210,9 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-    console.log(resp2);
     setallbookmarks(resp2?.postId);
   };
   const Checkbookmark = async (data) => {
-    console.log(data);
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
     const resp = await fetch(`${host}/api/comments/checkbookmark/`, {
@@ -232,7 +225,6 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-    console.log(resp2);
 
     return resp2;
 
@@ -240,8 +232,6 @@ const CommentLikeState = (props) => {
   };
 
   const countLike = async (data) => {
-    console.log(data);
-
     const resp = await fetch(`${host}/api/comments/countlike/`, {
       method: "PUT",
       headers: {
@@ -251,12 +241,9 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-    console.log(resp2);
     return resp2;
   };
   const countBookmark = async (data) => {
-    console.log(data);
-
     const resp = await fetch(`${host}/api/comments/countbookmark/`, {
       method: "PUT",
       headers: {
@@ -266,7 +253,6 @@ const CommentLikeState = (props) => {
     });
 
     const resp2 = await resp.json();
-    console.log(resp2);
     return resp2;
   };
 

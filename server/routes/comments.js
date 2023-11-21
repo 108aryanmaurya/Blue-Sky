@@ -571,5 +571,27 @@ router.put("/countbookmark", async (req, res) => {
 })
 
 
+router.put("/editcomment", async (req, res) => {
+
+    try {
+
+        const data = await Comment.findOneAndUpdate({ _id: req.body.id }, {
+            $set: {
+                text: req.body.text
+            }
+        })
+
+
+        console.log(data);
+        res.json(data);
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Sever error,Something in the way");
+    }
+
+})
+
+
 
 module.exports = router;

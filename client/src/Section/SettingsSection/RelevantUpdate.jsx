@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../Helper/Context/AuthContext";
-
+// computerScienceOptions
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FilterContext from "../../Helper/Context/FilterContext";
+import { computerScienceOptions } from "../../Component/constants";
 const RelevantUpdate = (props) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [computerScienceOption, setcomputerScienceOption] = useState([]);
   const context = useContext(AuthContext);
   const { UserDetails, getCurrentUser } = context;
   const context2 = useContext(FilterContext);
@@ -16,42 +16,31 @@ const RelevantUpdate = (props) => {
     setSelectedOptions(UserDetails?.relevant || []);
   }, [UserDetails]);
   const { RelevantModalStatus, firstSignUp = false } = props;
-  let computerScienceOptions = [
-    "React Js",
-    "Java",
-    "JavaScript",
-    "C++",
-    "Machine Learning",
-    "Data Science",
-    "Web Development",
-    "Artificial Intelligence",
-    "Blockchain",
-    "Mobile App Development",
-    "Database Management",
-    "Network Security",
-    "Cloud Computing",
-    "Front-end Development",
-    "Back-end Development",
-    "Computer Graphics",
-    "Software Engineering",
-    "Cybersecurity",
-    "IoT (Internet of Things)",
-    "Game Development",
-    "Data Analytics",
-  ];
-  useEffect(() => {
-    async function f() {
-      setcomputerScienceOption(
-        await getallcategory()
-        // ...computerScienceOptions
-      );
-      // console.log(computerScienceOption);
-    }
-    f();
+  // let computerScienceOptions = [
+  //   "React Js",
+  //   "Java",
+  //   "JavaScript",
+  //   "C++",
+  //   "Machine Learning",
+  //   "Data Science",
+  //   "Web Development",
+  //   "Artificial Intelligence",
+  //   "Blockchain",
+  //   "Mobile App Development",
+  //   "Database Management",
+  //   "Network Security",
+  //   "Cloud Computing",
+  //   "Front-end Development",
+  //   "Back-end Development",
+  //   "Computer Graphics",
+  //   "Software Engineering",
+  //   "Cybersecurity",
+  //   "IoT (Internet of Things)",
+  //   "Game Development",
+  //   "Data Analytics",
+  // ];
 
-    // computerScienceOptions.push(...computerScienceOption);
-  }, []);
-  const arr = [...computerScienceOption, ...computerScienceOptions];
+  // computerScienceOptions.push(...computerScienceOption);
   const handleOptionChange = (option) => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((item) => item !== option));
@@ -106,7 +95,7 @@ const RelevantUpdate = (props) => {
             Choose your preferences:
           </h3>
           <ul className="flex flex-wrap gap-3 overflow-y-scroll">
-            {arr.map((option, index) => (
+            {computerScienceOptions.map((option, index) => (
               <li key={index}>
                 <input
                   type="checkbox"

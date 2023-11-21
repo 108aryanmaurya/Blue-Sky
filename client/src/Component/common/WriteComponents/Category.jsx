@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-
+import { computerScienceOptions } from "../../constants";
 const Category = ({ blogs, setcategory }) => {
   const options = ["python", "Javascript", "CSS", "Tech"];
 
@@ -19,7 +19,7 @@ const Category = ({ blogs, setcategory }) => {
           name="category"
           value={blogs?.category}
           onChange={handleSelectChange}
-          options={options.map((cat) => {
+          options={computerScienceOptions.map((cat) => {
             return { value: cat, label: cat };
           })}
         ></Select>

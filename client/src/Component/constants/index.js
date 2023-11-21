@@ -4,6 +4,58 @@ export const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+
+export const computerScienceOptions = [
+  "Algorithm", "Data Structures", "Artificial Intelligence", "Machine Learning", "Deep Learning", "Natural Language Processing",
+  "Computer Vision", "Robotics", "Neural Networks", "Data Mining", "Big Data", "Cloud Computing", "Cybersecurity", "Cryptography",
+  "Network Security", "Computer Networks", "Distributed Systems", "Operating Systems", "Mobile Computing", "Software Engineering",
+  "Web Development", "Database Management", "SQL", "NoSQL", "Computer Graphics", "Human-Computer Interaction", "User Interface Design",
+  "Virtual Reality", "Augmented Reality", "Game Development", "Programming Languages", "Java", "Python", "C++", "JavaScript", "Ruby",
+  "Swift", "Kotlin", "HTML", "CSS", "Software Testing", "Test Automation", "DevOps", "Continuous Integration", "Agile Development",
+  "Scrum", "Software Architecture", "Microservices", "RESTful API", "Blockchain", "Internet of Things (IoT)", "Embedded Systems",
+  "Computer Architecture", "Compiler Design", "Parallel Computing", "Quantum Computing", "Computational Biology", "Bioinformatics",
+  "Geographical Information Systems (GIS)", "Computational Linguistics", "Information Retrieval", "Computer Ethics",
+  "Human-Centered Computing", "E-Learning", "Bio-inspired Computing", "Quantum Information Science", "Evolutionary Algorithms",
+  "Fuzzy Logic", "Swarm Intelligence", "Computational Physics", "Computational Chemistry", "Computational Economics",
+  "Computational Sociology", "Cyber-Physical Systems", "Formal Methods", "Graph Theory", "Mobile Security",
+  "Information Security Management", "Digital Forensics", "Computer Forensics", "Network Programming", "Systems Programming",
+  "Natural Computing", "Human-Robot Interaction", "Machine Translation", "Quantum Cryptography", "Cloud Security",
+  "Computer Algebra Systems", "Data Warehousing", "Network Administration", "IT Governance", "IT Strategy", "IT Project Management",
+  "Business Intelligence", "Information Systems", "Decision Support Systems", "Enterprise Resource Planning (ERP)", "Knowledge Management",
+  "Mobile Application Development", "Usability Engineering", "User Experience Design", "Web Security", "Malware Analysis", "Data Science",
+  "Predictive Analytics", "Business Analytics", "Computational Neuroscience", "Augmented Intelligence", "Computer-Assisted Design (CAD)",
+  "Software Maintenance", "Quantum Machine Learning", "Computational Sociology", "Algorithmic Trading", "Cyber-Physical Systems",
+  "Game Theory", "Social Network Analysis", "Computer-Mediated Communication", "Computational Geometry", "Information Visualization",
+  "Cloud-native Development", "Quantum Information Science", "Computational Musicology", "Bioinformatics", "Scientific Computing",
+  "Cryptocurrency", "Computer Algebra Systems", "Natural Language Generation", "Social Robotics", "Image Processing", "Signal Processing",
+  "Human Augmentation", "Quantum Algorithms", "Cryptocurrency", "Computational Journalism", "Neural Computation", "Mobile Robotics",
+  "Quantum Networking", "Quantum Information Theory", "Computational Finance", "Business Process Modeling", "Real-time Systems",
+  "Human-Centered Artificial Intelligence", "Computational Social Science", "Computer-Aided Diagnosis", "Sentiment Analysis", "Swarm Robotics",
+  "Quantum Communication", "Recommender Systems", "Cognitive Computing", "Emotion Recognition", "Quantum Programming",
+  "Quantum Cryptography", "Computational Sustainability", "Human-AI Collaboration", "Evolutionary Robotics", "Computational Anthropology",
+  "Digital Signal Processing", "Quantum Simulation", "Computational Plasma Physics", "Computational Geometry", "Data Governance",
+  "Quantum Error Correction", "Quantum Computing Languages", "Quantum Hardware", "Quantum Software", "Quantum Algorithms",
+  "Quantum Error Correction", "Quantum Cryptography", "Quantum Machine Learning", "Quantum Communication", "Quantum Networking",
+  "Quantum Sensing", "Quantum Entanglement", "Quantum Key Distribution", "Quantum Mechanics", "Quantum Annealing", "Quantum Coherence",
+  "Quantum Superposition", "Quantum Parallelism", "Quantum Complexity Theory", "Quantum Turing Machine", "Quantum Logic", "Quantum Gates",
+  "Quantum Circuits", "Quantum Information Theory", "Quantum Thermodynamics", "Quantum Measurement", "Quantum Foundations",
+  "Quantum Computing Education", "Quantum Computing Ethics", "Quantum Computing Applications", "Quantum Computing Hardware",
+  "Quantum Computing Software", "Quantum Computing Algorithms", "Quantum Computing Languages", "Quantum Computing Simulation",
+  "Quantum Computing Security", "Quantum Computing Programming", "Quantum Computing Research", "Quantum Computing Companies",
+  "Quantum Computing Startups", "Quantum Computing Investments", "Quantum Computing Conferences", "Quantum Computing News",
+  "Quantum Computing Blogs", "Quantum Computing Books", "Quantum Computing Tutorials", "Quantum Computing Podcasts",
+  "Quantum Computing Videos", "Quantum Computing Forums", "Quantum Computing Communities", "Java", "Python", "C++", "JavaScript",
+  "Ruby", "Swift", "Kotlin", "HTML", "CSS", "PHP", "Go (Golang)", "TypeScript", "Shell Scripting", "R", "MATLAB", "Scala", "Rust",
+  "Dart", "Objective-C", "Assembly Language", "SQL", "PL/SQL", "T-SQL", "Lisp", "Scheme", "Prolog", "Haskell", "Erlang", "Clojure",
+  "Groovy", "Perl", "Fortran", "COBOL", "Ada", "Lua", "Dart", "Shell Scripting", "PowerShell", "Crystal", "Julia", "F#", "Apex", "VBScript",
+  "CoffeeScript", "ActionScript", "Ada", "APL", "Bash", "C#", "COBOL", "CUDA", "D", "Delphi", "Elixir", "Elm", "Factor", "Forth", "Hack",
+  "HTML5", "J", "Julia", "Kotlin", "LabVIEW", "Maple", "Nim", "Objective-J", "Pascal", "PostScript", "Q#", "Racket", "SAS", "Shell", "SQL",
+  "Tcl", "Verilog", "VHDL", "XML", "XSLT", "YAML", "Zsh", "ChucK", "Eiffel", "Falcon", "GLSL", "JScript", "Korn Shell", "LabVIEW", "MUMPS",
+  "NetLogo", "Oz", "PL/I", "PPL", "PureScript", "Red", "Ring", "RPG", "Scala", "Standard ML", "SuperCollider", "TeX", "TLA+", "Unicon",
+  "UnrealScript", "VBA (Visual Basic for Applications)", "Verilog"
+
+]
+
 export const TagData = [
   {
     label: "Kubernetes",

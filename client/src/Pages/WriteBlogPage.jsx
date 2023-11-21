@@ -32,6 +32,18 @@ const WriteBlog = ({ UserDetails }) => {
     console.log(blogs);
   }, [featuredImage, category]);
 
+  console.log(JSON.parse(localStorage.getItem("BlogData")) || {});
+  // setblog(JSON.parse(localStorage.getItem("BlogData")) || {});
+  useEffect(() => {
+    const savedDraft = JSON.parse(localStorage.getItem("BlogData")) || {};
+    // localStorage.setItem("BlogData", JSON.stringify(savedDraft));
+    console.log(typeof savedDraft);
+    setblog(JSON.parse(localStorage.getItem("BlogData")) || {});
+
+    console.log(blogs);
+    console.log(savedDraft);
+  }, []);
+
   useEffect(() => {
     localStorage.setItem(
       "BlogData",
@@ -86,7 +98,7 @@ const WriteBlog = ({ UserDetails }) => {
   return (
     <>
       <div className="flex w-full justify-end pt-2 pr-5 bg-gray-100 p-3 dark:bg-darkBgPrimary z-50">
-        <ShowPreview blogData={{ ...blogs }}></ShowPreview>
+        <ShowPreview blogData={blogs}></ShowPreview>
         <button
           className="border-2 border-slate-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-400   rounded-md bg-primaryMain dark:bg-secondary px-4 py-1 font-semibold text-white"
           onClick={handleadd}

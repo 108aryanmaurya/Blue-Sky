@@ -27,7 +27,6 @@ const SingleBlogLayout = () => {
         setloading(false);
       });
   }, [Id, id]);
-  console.log(SingleBlogContent);
 
   useEffect(() => {
     // Start the timer when the component mounts
@@ -40,7 +39,6 @@ const SingleBlogLayout = () => {
       if (elapsedSeconds >= 10) {
         // setViewCount((prevViewCount) => prevViewCount + 1);
         // console.log();
-        console.log({ viewCount: SingleBlogContent[0]?.view, id });
         if (SingleBlogContent[0]?.view === "NaN") {
           updateViews({ view: "0", id });
         } else {

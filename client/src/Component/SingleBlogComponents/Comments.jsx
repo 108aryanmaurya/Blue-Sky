@@ -5,7 +5,7 @@ import CommentLikeContext from "../../Helper/Context/CommentLikeContext";
 import { useEffect } from "react";
 import CommentBox from "./CommentBox";
 import AuthContext from "../../Helper/Context/AuthContext";
-
+import CommentSettings from "./CommentSettings";
 export default function Comments({ blog }) {
   const context = useContext(CommentLikeContext);
   const context2 = useContext(AuthContext);
@@ -15,6 +15,7 @@ export default function Comments({ blog }) {
     setAuthModal((showAuthModal) => !showAuthModal);
   };
 
+  const [comment, setcomment] = useState("");
   useEffect(() => {
     setcomment({
       comment,
@@ -23,32 +24,25 @@ export default function Comments({ blog }) {
     });
   }, [blog, UserDetails]);
 
-  const [comment, setcomment] = useState("");
-
   const getInput = (event) => {
     let { name, value } = event.target;
     let input = {
       [name]: value,
     };
     setcomment({ ...comment, ...input });
-    console.log(comment);
   };
   const onsubmit = async (e) => {
     e.preventDefault();
-    console.log(comment);
     await addcomment(comment);
     await getsingleblogComment(blog?._id);
-    console.log(SingleBlogComment);
   };
   // console.log
 
   useEffect(() => {
-    console.log("Hello");
     async function d() {
       await getsingleblogComment(blog?._id);
     }
     d();
-    console.log(SingleBlogComment);
   }, [blog]);
 
   return (
@@ -104,12 +98,7 @@ export default function Comments({ blog }) {
             {SingleBlogComment?.comment?.map((comment) => {
               return (
                 <>
-                  <CommentBox
-                    key={comment?._id}
-                    depth={0}
-                    maxdepth={3}
-                    comment={comment}
-                  ></CommentBox>
+                  <CommentBox key={comment?._id} comment={comment}></CommentBox>
                 </>
               );
             })}
