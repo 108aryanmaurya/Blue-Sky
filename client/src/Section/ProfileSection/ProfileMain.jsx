@@ -154,7 +154,7 @@ export default function ProfileMain({ UserProfile, UserMatch }) {
                       ? UserProfile?.profileImg
                       : profileImg
                   }
-                  className="shadow-xl rounded-full  w-40 h-40 -mt-24 bg-white dark:bg-darkBgMain border-4 border-white dark:border-darkBgMain"
+                  className="shadow-xl rounded-full  w-40 h-40 -mt-24 bg-white dark:bg-darkBgMain   border-4 border-white dark:border-darkBgMain"
                 />
 
                 {UserMatch && (
@@ -227,7 +227,7 @@ export default function ProfileMain({ UserProfile, UserMatch }) {
                 )}
               </div>
             </div>
-            <div className="p-4 my-4 flex flex-col justify-center items-center max-lg:items-start">
+            <div className="p-4 my-4  max-lg:my-0 flex flex-col justify-center items-center max-lg:items-start">
               <h3 className="text-3xl font-semibold leading-normals text-blueGray-700  dark:text-darkTextMain">
                 {UserProfile?.name}
               </h3>

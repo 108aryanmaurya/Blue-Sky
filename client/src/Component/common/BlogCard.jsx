@@ -161,14 +161,14 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
                 navigate(`/blogs/${card._id}`);
               }}
             >
-              <h3 className="theme-font-minor text-xl my-1 font-bold font-serif hover:text-primaryMain  dark:hover:text-secondary dark:text-darkTextMain  cursor-pointer max-sm:text-md capitalize max-sm:font-medium ">
+              <h3 className="theme-font-minor text-xl my-1 font-bold font-serif hover:text-primaryMain  dark:hover:text-secondary dark:text-darkTextMain  cursor-pointer max-sm:text-md capitalize max-sm:font-medium line-clamp-2 ">
                 {card?.Title}
               </h3>
             </div>
 
             {/* <div className="py-1 flex gap-2 justify-start items-center">
               <button
-                    className="p-1 rounded-md text-[15px] text-white px-4 border-2 border-slate-200 dark:border-gray-700 hover:border-blue-300  bg-primaryMain "
+                className="p-1 rounded-md text-[15px] text-white px-4 border-2 border-slate-200 dark:border-gray-700 hover:border-blue-300  bg-primaryMain dark:hover:border-blue-400"
                 onClick={() => {
                   toast.success("Welcome to Blog");
 
@@ -178,7 +178,7 @@ export default function BlogCard({ card, isBookmark, isLiked }) {
                 Read
               </button>
               <button
-                className={`p-1 rounded-md text-[15px] text-white px-4 bg-primaryMain  border-2 border-slate-200 ${
+                className={`p-1 rounded-md text-[15px] dark:hover:border-blue-400 text-white px-4 bg-primaryMain  border-2 border-slate-200 ${
                   bookmarked && "bg-gray-500"
                 }  dark:border-gray-700 hover:border-blue-300 `}
                 onClick={bookmark}

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import CommentLikeContext from "../../../Helper/Context/CommentLikeContext";
 import { toast } from "react-toastify";
-import { set } from "mongoose";
 
 const Bookmark = ({ setbookmarked, card }) => {
   const context5 = useContext(CommentLikeContext);

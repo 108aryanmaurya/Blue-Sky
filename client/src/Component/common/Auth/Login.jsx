@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import AuthContext from "../../../Helper/Context/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingBar from "react-top-loading-bar";
 
 export default function Login({ setSign, ModalStatus, goolesignin }) {
   const host = "http://localhost:5001";
@@ -9,39 +10,59 @@ export default function Login({ setSign, ModalStatus, goolesignin }) {
   const [Logincreds, setLogincreds] = useState({ email: "", password: "" });
   const context = useContext(AuthContext);
   const { setAuthStatus } = context;
+
+  const [loadingBarProgress, setLoadingBarProgress] = useState(0);
+
   const LoginOnchange = (e) => {
     setLogincreds({
       ...Logincreds,
       [e.target.name]: e.target.value,
     });
   };
+
   const login = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${host}/api/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: Logincreds.email,
-        password: Logincreds.password,
-      }),
-    });
 
-    const json = await response.json();
-    if (json.success) {
-      localStorage.setItem("UserData", JSON.stringify(json));
+    setLoadingBarProgress(40);
 
-      ModalStatus();
-      setAuthStatus(true);
-      window.location.reload();
+    try {
+      const response = await fetch(`${host}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-      toast.success("Account Loggedin Succesfully");
-    } else {
-      toast.error("Invalid Credentials");
+        body: JSON.stringify({
+          email: Logincreds.email,
+          password: Logincreds.password,
+        }),
+      });
+      setLoadingBarProgress(50);
+
+      const json = await response.json();
+      if (json.success) {
+        localStorage.setItem("UserData", JSON.stringify(json));
+        setLoadingBarProgress(80);
+
+        ModalStatus();
+        setAuthStatus(true);
+        window.location.reload();
+
+        toast.success("Account Logged in Successfully");
+      } else {
+        toast.error("Invalid Credentials");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An error occurred during login");
+    } finally {
+      setLoadingBarProgress(100);
+
+      setTimeout(() => {
+        setLoadingBarProgress(0);
+      }, 500);
     }
   };
-
   return (
     <>
       <div className="container flex flex-col justify-center items-center max-sm:p-5 p-10 max-lg:py-20 max-lg:px-20 w-[50%] max-lg:w-[90%] ">
@@ -107,6 +128,13 @@ export default function Login({ setSign, ModalStatus, goolesignin }) {
           </a>
         </p>
       </div>
+
+      <LoadingBar
+        color="#2196F3"
+        height={5}
+        progress={loadingBarProgress}
+        onLoaderFinished={() => setLoadingBarProgress(0)}
+      />
     </>
   );
 }

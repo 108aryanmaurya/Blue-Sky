@@ -47,7 +47,7 @@ export default function ProfileModal({ profileMenu }) {
                 : profileDefault
             }
             alt=""
-            className="rounded-full h-10 w-10 mr-2"
+            className="bg-bgBlue dark:bg-darkBgPrimary rounded-full h-10 w-10 mr-2"
           />
           <div
             className="truncate text-lg mt-2 font-semibold flex hover:text-primaryMain"

@@ -7,6 +7,8 @@ const CommentLikeState = (props) => {
   const [checkbookmark, setcheckbookmark] = useState([]);
   const [editcomment, seteditcomment] = useState([]);
   const [checklike, setchecklike] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const context = useContext(blogContext);
   // const {}
   const [reply, setreply] = useState({});
@@ -200,18 +202,26 @@ const CommentLikeState = (props) => {
   const getbookmark = async (data) => {
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
-    const resp = await fetch(`${host}/api/comments/getbookmark/`, {
-      method: "PUT",
-      headers: {
-        "auth-token": obj.authtoken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data }),
-    });
+    try {
+      const resp = await fetch(`${host}/api/comments/getbookmark/`, {
+        method: "PUT",
+        headers: {
+          "auth-token": obj.authtoken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
+      });
 
-    const resp2 = await resp.json();
-    setallbookmarks(resp2?.postId);
+      const resp2 = await resp.json();
+      console.log(resp2);
+      setallbookmarks(resp2?.postId);
+    } catch (error) {
+      console.error("Error fetching bookmarks:", error);
+    } finally {
+      setLoading(false); // Set loading to false when the request is complete
+    }
   };
+
   const Checkbookmark = async (data) => {
     const obj = JSON.parse(localStorage.getItem("UserData"));
 
@@ -279,6 +289,7 @@ const CommentLikeState = (props) => {
         deletelike,
         countLike,
         countBookmark,
+        loading,
       }}
     >
       {props.children}

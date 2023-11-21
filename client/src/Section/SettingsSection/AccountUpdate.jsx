@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function PasswordUpdate() {
   const context = useContext(AuthContext);
-  const { UserDetails, getCurrentUser } = context;
+  const { UserDetails, getCurrentUser, AuthStatus } = context;
   const host = "http://localhost:5001";
 
   const [oldPassword, setOldPassword] = useState("");
@@ -87,7 +87,8 @@ export default function PasswordUpdate() {
       <h1 className="text-xl pb-4 max-lg:pb-0 font-bold text-gray-500 tracking-wide">
         Update Password
       </h1>
-      {JSON.parse(localStorage.getItem("UserData")).isGoogleSignup ? (
+      {AuthStatus &&
+      JSON.parse(localStorage.getItem("UserData")).isGoogleSignup ? (
         <form
           className="form flex flex-col w-full overflow-y-scroll px-2"
           onSubmit={setpassword}
@@ -129,6 +130,7 @@ export default function PasswordUpdate() {
           {passwordError && (
             <div className="text-red-500 mt-2">{passwordError}</div>
           )}
+
           <div>
             <button
               type="submit"

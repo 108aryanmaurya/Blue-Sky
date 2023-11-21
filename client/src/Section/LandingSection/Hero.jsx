@@ -51,7 +51,7 @@ const Hero = () => {
                     {randomBlog?.Category}
                   </span>
                   <h1
-                    className="text-[40px] font-bold py-5 text-center max-lg:py-2 max-lg:text-[22px] font-serif hover:text-primaryMain dark:text-darkTextMain dark:hover:text-secondary capitalize cursor-pointer"
+                    className="text-[40px] font-bold py-5 text-center max-lg:py-2 max-lg:text-[22px] font-serif hover:text-primaryMain dark:text-darkTextMain dark:hover:text-secondary capitalize cursor-pointer line-clamp-3"
                     onClick={() => {
                       navigate(`/blogs/${randomBlog?._id}`);
                     }}

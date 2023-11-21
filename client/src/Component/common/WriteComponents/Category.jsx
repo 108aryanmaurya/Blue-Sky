@@ -15,7 +15,7 @@ const Category = ({ blogs, setcategory }) => {
       <div className=" ">Category</div>
       <div className="">
         <Select
-          className="rounded-md text-black dark:text-black border-2 dark:bg-darkBgPrimary border-gray-300 dark:border-gray-700 hover:border-primaryMain hover:dark:border-secondary focus:border-primaryMain focus:dark:border-secondary outline-none transition-colors duration-300 ease-in-out "
+          className="rounded-md text-black dark:text-black border-2 dark:bg-darkBgPrimary border-gray-300 dark:border-gray-700 hover:border-primaryMain hover:dark:border-secondary focus:border-primaryMain focus:dark:border-secondary outline-none"
           name="category"
           value={blogs?.category}
           onChange={handleSelectChange}

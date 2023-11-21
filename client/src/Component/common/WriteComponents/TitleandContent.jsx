@@ -11,7 +11,7 @@ const TitleandContent = ({ blogs, getInput }) => {
           onChange={(e) => {
             getInput(e);
           }}
-          className="dark:text-darkTextMain text-gray-900 border-2 dark:bg-darkBgPrimary border-gray-300 dark:border-gray-700 hover:border-primaryMain hover:dark:border-secondary focus:border-primaryMain focus:dark:border-secondary outline-none transition-colors duration-300 ease-in-out  max-lg:mt-2  w-full  rounded-md p-3 text-[23px]"
+          className="dark:text-darkTextMain text-gray-900 border-2 dark:bg-darkBgPrimary border-gray-300 dark:border-gray-700 hover:border-primaryMain hover:dark:border-secondary focus:border-primaryMain focus:dark:border-secondary outline-none max-lg:mt-2  w-full  rounded-md p-3 text-[23px]"
           type="text"
         />
       </div>

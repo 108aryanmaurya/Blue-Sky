@@ -113,7 +113,7 @@ export default function LandingCards({ card }) {
         <div className="flex pb-4 max-sm:pb-2 items-center justify-between">
           <div className="flex">
             <img
-              className="rounded-full  dark:bg-darkBgMain bg-white max-w-none w-10 h-10 object-cover object-top"
+              className="rounded-full  dark:bg-darkBgMain bg-white max-w-none w-10  h-10 object-cover object-top"
               src={
                 card.author.profileImg == ""
                   ? profileDefault
@@ -138,7 +138,7 @@ export default function LandingCards({ card }) {
             </div>
           </div>
           <button
-            className="p-1 max-lg:hidden rounded-md text-[15px] text-white px-4 border-2 border-slate-200  dark:border-gray-700 hover:border-blue-300  bg-primaryMain "
+            className="p-1 max-lg:hidden rounded-md text-[15px] text-white px-4 border-2 border-slate-200  dark:border-gray-700 hover:border-blue-300  bg-primaryMain dark:hover:border-blue-400"
             onClick={() => {
               toast.success("Welcome to Blog");
 
@@ -150,18 +150,17 @@ export default function LandingCards({ card }) {
         </div>
         <div className="flex gap-10">
           <h2
-            className="text-gray-600 text-xl max-lg:text-md max-sm:text-sm leading-7 font-bold font-serif  dark:text-darkTextMain hover:text-primaryMain  dark:hover:text-secondary  cursor-pointer capitalize"
+            className="text-gray-600 text-xl max-lg:text-md max-sm:text-sm leading-7 font-bold font-serif  dark:text-darkTextMain hover:text-primaryMain tracking-wider dark:hover:text-secondary line-clamp-2 cursor-pointer capitalize"
             onClick={() => {
               navigate(`/blogs/${card?._id}`);
             }}
           >
-            {" "}
             {card.Title}
           </h2>
         </div>
 
         <div className="py-3 max-sm:py-2">
-          <img className="max-w-full rounded-lg" src={card.Blog_url} />
+          <img className="w-full rounded-lg" src={card.Blog_url} />
         </div>
         <div className="flex justify-between">
           <div className="flex gap-5">
@@ -180,7 +179,7 @@ export default function LandingCards({ card }) {
               </span>
             </div>
             <div className=" max-sm:pt-0">
-              <i className="fa fa-eye  text-gray-600  mr-1 "></i>
+              <i className="fa fa-eye  text-gray-600  mr-1 dark:text-gray-200"></i>
 
               <span className="text-lg font-bold   dark:text-darkTextMain">
                 {card?.view}

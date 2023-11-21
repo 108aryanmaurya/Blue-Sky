@@ -70,7 +70,7 @@ export default function Search() {
   return (
     <>
       <div className="relative">
-        <form className="max-md:hidden w-[100%] flex items-centerms  ml-2">
+        <form className=" w-[100%] flex items-centerms  ml-2">
           <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
             Search
           </label>

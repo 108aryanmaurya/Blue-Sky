@@ -61,10 +61,10 @@ const Like = ({ card }) => {
         {likecount}
       </p>
       <i
-        className={` ml-[4px] dark:text-white    ${
+        className={` ml-[4px]    ${
           liked
             ? "text-red-500 dark:text-red-500 fa fa-heart"
-            : " fa fa-heart-o "
+            : " fa fa-heart-o text-black dark:text-white"
         }   text-[16px] `}
       ></i>
     </div>

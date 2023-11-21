@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Leftsection from "../Section/SettingsSection/Leftsection";
 import Rightsection from "../Section/SettingsSection/Rightsection";
 import { useNavigate } from "react-router-dom";
-
+import AuthContext from "../Helper/Context/AuthContext";
 export default function SettingsPage() {
+  const context = useContext(AuthContext);
+  const { AuthStatus } = context;
   const navigate = useNavigate();
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("UserData"))) {
+    if (!AuthStatus) {
       navigate("/");
     }
-  });
+  }, [AuthStatus]);
 
   return (
     <>

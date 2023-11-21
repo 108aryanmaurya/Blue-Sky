@@ -107,11 +107,11 @@ const RelevantUpdate = (props) => {
                 />
                 <label
                   htmlFor={`cs-option-${index}`}
-                  className={`inline-flex items-center justify-between w-full p-2 px-6 text-gray-500 bg-white border-2  rounded-full cursor-pointer hover:border-[#ad81ff] ${
+                  className={`inline-flex items-center justify-between w-full p-2 px-6 text-gray-500 bg-white border-2  rounded-full cursor-pointer hover:border-blue-300 ${
                     selectedOptions.includes(option)
                       ? "peer-checked:bg-primaryMain peer-checked:text-white peer-checked:dark:bg-secondary "
                       : ""
-                  } dark:bg-darkBgMain dark:text-white dark:border-darkBgPrimary hover:dark:border-blue-400 `}
+                  } dark:bg-darkBgMain dark:text-white dark:border-darkBgPrimary hover:dark:border-blue-300 `}
                 >
                   <div className="w-full text-lg font-semibold text-center">
                     {option}

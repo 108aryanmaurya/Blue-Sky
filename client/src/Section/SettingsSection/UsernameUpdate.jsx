@@ -135,7 +135,7 @@ export default function UsernameUpdate() {
               name="submit"
               className={`button-submit  my-2 text-white rounded-full p-2 px-6 font-bold bg-primaryMain dark:bg-secondary cursor-pointer ${
                 usernameExists || username.trim() === "" || containsSpecialChars
-                  ? "bg-purple-300 dark:bg-red-200"
+                  ? "bg-blue-300 dark:bg-blue-300"
                   : ""
               }`}
               disabled={

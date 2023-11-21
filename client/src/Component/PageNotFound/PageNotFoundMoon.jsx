@@ -17,7 +17,10 @@ export default function PageNotFoundMoon() {
             <div className="trace"></div>
           </div>
           <div className="flag">404</div>
-        </div>
+        </div>{" "}
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
         <div className="message">
           <p>
             Life was wiped form this planet a long time ago,{" "}
@@ -27,9 +30,6 @@ export default function PageNotFoundMoon() {
             </Link>
           </p>
         </div>
-        <div id="stars"></div>
-        <div id="stars2"></div>
-        <div id="stars3"></div>
       </div>
     </>
   );

@@ -3,16 +3,19 @@ import CommentLikeContext from "../Helper/Context/CommentLikeContext";
 import { useLocation, useParams } from "react-router";
 import { BlogCard } from "../Component/common";
 import { Notfound } from "../Assets/images";
-
+import BlogCardSkeleton from "../Component/SkeletonLoaders/BlogCardSkeleton";
 const BookmarkPage = () => {
   const context = useContext(CommentLikeContext);
-  const { getbookmark, allbookmarks } = context;
+  const { getbookmark, allbookmarks, loading } = context;
 
   useEffect(() => {
     getbookmark(JSON.parse(localStorage.getItem("UserData")).userDetailId);
     console.log(allbookmarks);
   }, []);
 
+  if (loading) {
+    return <BlogCardSkeleton />;
+  }
   return (
     <>
       {allbookmarks.length > 0 ? (
